@@ -160,7 +160,7 @@ date_default_timezone_set('America/Denver');
             if (array_key_exists($dateToLookFor, $photos)) {
                 return $photos[$dateToLookFor]->attributes()->{"url"};
             } else {
-                return "http://tumblr.serff.net";
+                return "http://tumblr.serff.net"; 
             }
         }
 
