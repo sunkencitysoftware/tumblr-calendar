@@ -11,22 +11,25 @@
         </style>
     </head>
     <body>
-        <script type="text/javascript" src="js/calgen.js"></script>
+        <script type="text/javascript" src="js/tumblr-calendar.js"></script>
         <script type="text/javascript" src="js/exampleTumblrData.js"></script>
 <!--        <script type="text/javascript" src="http://tumblr.serff.net/api/read/json"></script>-->
 
-        <script type="text/javascript">
+<!--        <script type="text/javascript">
             // The variable "tumblr_api_read" is now set.
             document.write(
             '<a href="' + tumblr_api_read.posts[0]['url'] +
                 '">Most recent Tumblr post</a>'
         );
-        </script>
+        </script>-->
 
         <script type="text/javascript">
-            var fm = {month: 0,year:2011, html:''};
-            var html = setCal(fm);
-            document.write(html);
+//            var fm = {month: 0,year:2011, html:''};
+//            var html = setCal(fm);
+
+            var tumblrCal = new TumblrCalendar(tumblr_api_read);
+            var posts = tumblrCal.getPosts();
+            document.write(tumblrCal.getCalendarHtmlForMonth("0", "2011"));
         </script>
         <div id="sample"></div>
     </body>
