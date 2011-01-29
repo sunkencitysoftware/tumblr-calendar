@@ -5,16 +5,17 @@
 #month th, #month td { border: 1px solid #000; }
 #month thead { background-color:#9cf; }
 #month td { width: 55px; height: 55px; padding: 1px; vertical-align: top; overflow: auto; }
-td .day { width: 55px; height: 45px; overflow:auto; margin-top: 0; }
-#month tbody .weekend { background-color:#def; }
+td .day { width: 75px; height: 75px; overflow:auto; margin-top: 0; }
+/*#month tbody .weekend { background-color:#def; }*/
 #month tbody .next, #month tbody .previous { background-color:#ddd; }
 
 /*body {background-color: #fff;color: #000;font-family: arial, sans-serif;font-size: 90%;}*/
 #month-year {
     text-align: center;
 }
-#photo {
-    border: 0;
+.photo {
+    margin: 2;
+
 }
 
 .nopost {
