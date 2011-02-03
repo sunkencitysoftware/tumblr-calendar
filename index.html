@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Tumblr Calendar</title>
-        <link rel="stylesheet" type="text/css" href="http://m2.sunkencity.org/org/sunkencity/tumblr/tumblr-calendar/0.0.1/css/calendar.css" />
+        <link rel="stylesheet" type="text/css" href="css/calendar.css" />
 
         <style type="text/css">
             body {
@@ -11,17 +11,20 @@
         </style>
     </head>
     <body>
-        <script type="text/javascript" src="http://m2.sunkencity.org/org/sunkencity/tumblr/tumblr-calendar/0.0.1/js/prototype.js"></script>
-        <script type="text/javascript" src="http://m2.sunkencity.org/org/sunkencity/tumblr/tumblr-calendar/0.0.1/js/tumblr-calendar.js"></script>
+        <script type="text/javascript" src="js/prototype.js"></script>
+        <script type="text/javascript" src="js/tumblr-calendar.js"></script>
 <!--        <script type="text/javascript" src="sample/exampleTumblrData.js"></script>-->
         <script type="text/javascript" src="http://tumblr.serff.net/api/read/json?num=31"></script>
+        <script type="text/javascript" src="js/tumblr-calendar-gen.js"></script>
 
-
-        <script type="text/javascript">
-            var tumblrCal = new TumblrCalendar(tumblr_api_read);
-            tumblrCal.populatePhotoPosts();
-            document.write(tumblrCal.getCalendarHtmlForMonth("0", "2011"));
-        </script>
-        <div id="sample"></div>
+<!--        <script type="text/javascript">
+            if (typeof tumblr_api_read == "undefined") {
+                document.write("<div>Unable to load tumblr posts</div>");
+            } else {
+                var tumblrCal = new TumblrCalendar(tumblr_api_read);
+                tumblrCal.populatePhotoPosts();
+                document.write(tumblrCal.getCalendarHtmlForMonth("0", "2011"));
+            } 
+        </script>-->
     </body>
 </html>

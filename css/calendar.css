@@ -4,7 +4,7 @@
 #month { border-collapse: collapse; margin: 2em auto; }
 #month th, #month td { border: 1px solid #000; }
 #month thead { background-color:#9cf; }
-#month td { width: 55px; height: 55px; padding: 1px; vertical-align: top; overflow: auto; }
+#month td { width: 75px; height: 75px; padding: 1px; vertical-align: top; overflow: auto; }
 td .day { width: 75px; height: 75px; overflow:auto; margin-top: 0; }
 /*#month tbody .weekend { background-color:#def; }*/
 #month tbody .next, #month tbody .previous { background-color:#ddd; }
@@ -14,15 +14,20 @@ td .day { width: 75px; height: 75px; overflow:auto; margin-top: 0; }
     text-align: center;
 }
 .photo {
-    margin: 2;
-
+    margin: 2px;
+    padding-top: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
-
 .nopost {
     color: #BBBBBB;
-    height: 79px;
+    height: 75px;
     padding: 0;
     text-align: center;
     vertical-align: top;
-
+}
+.photo img {
+    margin: 0;
+    border: 0;
+    line-height: 1;
 }
