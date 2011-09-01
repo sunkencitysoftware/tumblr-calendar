@@ -1,26 +1,68 @@
-function TumblrCalendar(tumblelog) {
+function TumblrCalendar(tumblrPosts) {
     // class "constructor" initializes this.hour field
-    this.tumblelog = tumblelog;
+    this.tumblrPosts = tumblrPosts;
     var dow = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     this.months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     this.photoPosts = new Hash();
-
+    this.newestPostDate = null;
+    this.oldestPostDate = null;
+    
     this.populatePhotoPosts = function() {
-        if (typeof this.tumblelog != "undefined") {
-            for (var i = 0; i < this.tumblelog.posts.length; i++) {
-                var post = this.tumblelog.posts[i];
+//        if (typeof this.tumblelog != "undefined") {
+//            for (var i = 0; i < this.tumblelog.posts.length; i++) {
+//                var post = this.tumblelog.posts[i];
+//                if (post.type == "photo") {
+//                    var d = new Date(post.date);
+//                    var day = this.getDateOnly(d);
+//                    this.photoPosts.set(day, post);
+//                }
+//            }
+//        }
+        this.addPosts(this.tumblrPosts);
+        return this.tumblrPosts;
+    }
+
+    this.addPosts = function(tumblrPosts) {
+        if (typeof tumblrPosts != "undefined") {
+            for (var i = 0; i < tumblrPosts.length; i++) {
+                var post = tumblrPosts[i];
                 if (post.type == "photo") {
-                    var d = new Date(post.date);
+                    var d = new Date(post.timestamp*1000);
                     var day = this.getDateOnly(d);
                     this.photoPosts.set(day, post);
+                    this.updateDates(d);
                 }
             }
         }
-        return this.photoPosts;
     }
-
+    
+    this.updateDates = function(date) {
+        if (this.newestPostDate == null) {
+            this.newstPostDate = date;
+        } else {
+            if (date.getTime() > this.newestPostDate.getTime()) {
+                this.newestPostDate = date;
+            }
+        }
+        
+        if (this.oldestPostDate == null) {
+            this.oldestPostDate = date;
+        } else {
+            if (date.getTime() < this.oldestPostDate.getTime()) {
+                this.oldestPostDate = date;
+            }
+        }
+    }
+    
+    this.getPhotoPosts = function() { return this.photoPosts; }
+    this.getNumPosts = function() {return this.photoPosts.values().length; }
+    
+    this.getOldestPost = function() {
+        return this.photoPosts.get(this.getDateOnly(this.oldestPostDate));
+    }
+    
     this.getZeroPaddedNumber = function(num, digits) {
-        if (digits <= 1 || num.length >= digits) {
+        if (digits <= 1 || num.toString().length >= digits) {
             return num;
         }
         if (num < (10 * digits - 1)) {
@@ -117,8 +159,16 @@ function TumblrCalendar(tumblelog) {
     }
     
     this.getPhotoHtml = function(post) {
-        var img = "<img border=\"0\" src=\"" + post["photo-url-75"] + "\"/>";
-        var href =  "<div class=\"photo\"><a href=\"" + post["url"] + " \">" + img + "</a></div>";
+        var photoUrl;
+        for (var i = 0; i < post.photos[0].alt_sizes.length; i++) {
+            var p = post.photos[0].alt_sizes[i];
+            if (p.width == 75 && p.height == 75) {
+                photoUrl = p.url;
+                break;
+            }
+        }
+        var img = "<img border=\"0\" src=\"" + photoUrl + "\" />";
+        var href =  "<div class=\"photo\"><a href=\"" + post["post_url"] + " \">" + img + "</a></div>";
         return href;
     }
 

@@ -9,22 +9,14 @@
                 margin: 0;
             }
         </style>
-    </head>
-    <body>
         <script type="text/javascript" src="js/prototype.js"></script>
         <script type="text/javascript" src="js/tumblr-calendar.js"></script>
-<!--        <script type="text/javascript" src="sample/exampleTumblrData.js"></script>-->
-        <script type="text/javascript" src="http://tumblr.serff.net/api/read/json?num=31"></script>
+        <script type="text/javascript">
+            var baseUrl = "http://api.tumblr.com/v2/blog/tumblr.serff.net/posts?type=photo&api_key=h9Hj7EC8QRXe9pYadEwhJeWlKI3JFQ3B1XgldB4boczf1i1HY5";
+        </script>
         <script type="text/javascript" src="js/tumblr-calendar-gen.js"></script>
-
-<!--        <script type="text/javascript">
-            if (typeof tumblr_api_read == "undefined") {
-                document.write("<div>Unable to load tumblr posts</div>");
-            } else {
-                var tumblrCal = new TumblrCalendar(tumblr_api_read);
-                tumblrCal.populatePhotoPosts();
-                document.write(tumblrCal.getCalendarHtmlForMonth("0", "2011"));
-            } 
-        </script>-->
+    </head>
+    <body>
+        <div id="calendar"></div>
     </body>
 </html>
