@@ -39,7 +39,7 @@ var checkForMorePhotos = function() {
         //make a new request using the offset parameter and a new callback of addPhotos
         var requestUrl = baseUrl + "&offset=" + (tumblrCal.getNumPosts() + 1) + "&jsonp=addPhotos";
         
-        var bodyID = document.getElementsByTagName("body")[0]
+        var bodyID = document.getElementsByTagName("body")[0];
         var extraPhotoScript = document.createElement("script");
         
         extraPhotoScript.type = 'text/javascript';
@@ -52,8 +52,14 @@ var checkForMorePhotos = function() {
 };
 
 var generateCalendar = function(tumblrCal) {
+    var yearHtml ="";
     for (var i = 0; i < 12; i++) {
-        $(document.body).insert(tumblrCal.getCalendarHtmlForMonth(i, "2011") + "<br>");
+        var monthHtml = tumblrCal.getCalendarHtmlForMonth(i, "2011");
+        yearHtml += monthHtml;
     }
+//    document.getElementById("post-").innerHTML = yearHtml; //this works
+    
+    $$("#post- div[class=copy]")[0].innerHTML = yearHtml;
+    
 };
 
